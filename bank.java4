@@ -1,0 +1,24 @@
+
+                DepositSavingsWindow();
+                chooseSavings.dispose();
+            }else if(e.getSource() == withdrawlSavings) {
+                WithdrawlSavingsWindow();
+                chooseSavings.dispose();
+            } else if (e.getSource() == depositCurrent) {
+                DepositCurrentWindow();
+                chooseCurrent.dispose();
+            } else if (e.getSource() == withdrawlCurrent) {
+                WithdrawlCurrentWindow();
+                chooseCurrent.dispose();
+            } else if (e.getSource() == depositSavingsButton) {
+                depositSavingsFile(Float.parseFloat(amountDepositSavings.getText()));
+            }else if (e.getSource() == withdrawlSavingsButton) {
+                withdrawlSavingsFile(Float.parseFloat(amountWithdrawlSavings.getText()));
+            }else if(e.getSource() == depositCurrentButton){
+                depositCurrentFile(Float.parseFloat(amountDepositCurrent.getText()));
+            } else if (e.getSource() == withdrawlCurrentButton) {
+               withdrawlCurarentFile(Float.parseFloat(amountWithdrawlCurrent.getText()));
+
+            }
+        }
+    }
