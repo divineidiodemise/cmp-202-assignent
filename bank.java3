@@ -3,11 +3,11 @@
             withdrawlCurrentButton.setFont(new Font("Consolas", Font.ITALIC, 18));
             withdrawlCurrentButton.setFocusable(false);
             withdrawlCurrentButton.setBounds(70, 140, 140, 40);
-            withdrawlCurrentButton.addActionListener(this);
+            withdrawlCurrentButton.addActionListener (this);
 
             WithdrawlAmountCurrent.setSize(400, 400);
             WithdrawlAmountCurrent.setVisible(true);
-            WithdrawlAmountCurrent.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            WithdrawlAmountCurrent.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
             WithdrawlAmountCurrent.setLayout(null);
             WithdrawlAmountCurrent.add(enterWithdrawlCurrentAmountLabel);
             WithdrawlAmountCurrent.add(amountWithdrawlCurrent);
@@ -19,7 +19,7 @@
         public  void depositSavingsFile(float amount){
             try {
                 FileWriter fileWriter = new FileWriter("Bank.Savings.txt");
-                fileWriter.write("Date: "+new Date()+"\n"+"Amount: "+savingsAccount.deposit(amount));
+                fileWriter.write("Date: "+new Date()+"\n"+"Amount: "+ savingsAccount.deposit(amount));
                 JOptionPane.showMessageDialog(null,"Transaction Complete");
                 fileWriter.close();
             }catch(IOException e){
@@ -33,7 +33,7 @@
                 if(savingsAccount.withdrawl(amount) == 0){
                     JOptionPane.showMessageDialog(null,"Cannot withdrawl over 20,000","Deposit too high",JOptionPane.ERROR_MESSAGE);
                 }else{
-                    fileWriter.write("Date: "+new Date()+"\n"+"Amount: "+savingsAccount.withdrawl(amount));
+                    fileWriter.write("Date: "+ new Date() +"\n"+"Amount: "+ savingsAccount.withdrawl(amount));
                     JOptionPane.showMessageDialog(null,"Transaction Complete");
                 }
                 fileWriter.close();
