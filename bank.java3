@@ -1,0 +1,80 @@
+            amountWithdrawlCurrent.setBounds(45, 80, 250, 40);
+
+            withdrawlCurrentButton.setFont(new Font("Consolas", Font.ITALIC, 18));
+            withdrawlCurrentButton.setFocusable(false);
+            withdrawlCurrentButton.setBounds(70, 140, 140, 40);
+            withdrawlCurrentButton.addActionListener(this);
+
+            WithdrawlAmountCurrent.setSize(400, 400);
+            WithdrawlAmountCurrent.setVisible(true);
+            WithdrawlAmountCurrent.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            WithdrawlAmountCurrent.setLayout(null);
+            WithdrawlAmountCurrent.add(enterWithdrawlCurrentAmountLabel);
+            WithdrawlAmountCurrent.add(amountWithdrawlCurrent);
+            WithdrawlAmountCurrent.add(amountWithdrawlCurrent);
+            WithdrawlAmountCurrent.add(withdrawlCurrentButton);
+        }
+
+
+        public  void depositSavingsFile(float amount){
+            try {
+                FileWriter fileWriter = new FileWriter("Bank.Savings.txt");
+                fileWriter.write("Date: "+new Date()+"\n"+"Amount: "+savingsAccount.deposit(amount));
+                JOptionPane.showMessageDialog(null,"Transaction Complete");
+                fileWriter.close();
+            }catch(IOException e){
+                System.out.println("Cannot write to this file");
+            }
+        }
+
+        public  void withdrawlSavingsFile(float amount){
+            try {
+                FileWriter fileWriter = new FileWriter("Bank.Savings.txt");
+                if(savingsAccount.withdrawl(amount) == 0){
+                    JOptionPane.showMessageDialog(null,"Cannot withdrawl over 20,000","Deposit too high",JOptionPane.ERROR_MESSAGE);
+                }else{
+                    fileWriter.write("Date: "+new Date()+"\n"+"Amount: "+savingsAccount.withdrawl(amount));
+                    JOptionPane.showMessageDialog(null,"Transaction Complete");
+                }
+                fileWriter.close();
+            }catch(IOException e){
+                System.out.println("Cannot write to this file");
+            }
+        }
+
+        public  void depositCurrentFile(float amount){
+            try {
+                FileWriter fileWriter = new FileWriter("Bank.Current.txt");
+                fileWriter.write("Date: "+new Date()+"\n"+"Amount: "+currentAccount.deposit(amount));
+                JOptionPane.showMessageDialog(null,"Transaction Complete");
+                fileWriter.close();
+            }catch(IOException e){
+                System.out.println("Cannot write to this file");
+            }
+        }
+
+        public  void withdrawlCurrentFile(float amount){
+            try {
+                FileWriter fileWriter = new FileWriter("Bank.Current.txt");
+                fileWriter.write("Date: "+new Date()+"\n"+"Amount: "+savingsAccount.withdrawl(amount));
+                JOptionPane.showMessageDialog(null,"Transaction Complete");
+                fileWriter.close();
+            }catch(IOException e){
+                System.out.println("Cannot write to this file");
+            }
+        }
+
+
+        public void actionPerformed(ActionEvent e){
+            if(e.getSource() == login){
+                if(pin.getText().equals(pinNumber)){
+                    ChooseAccount();
+                    first.dispose();
+                }else{JOptionPane.showMessageDialog(null,"Pin is incorrect","Incorrect pin",JOptionPane.ERROR_MESSAGE);}
+            }else if(e.getSource() == savings) {
+                ChooseSavingsWindow();
+                ChooseAcctType.dispose();
+            }else if(e.getSource() == current){
+                ChooseCurrentWindow();
+                ChooseAcctType.dispose();
+            }else if(e.getSource() == depositSavings) {
